@@ -1,22 +1,22 @@
-import logo from './logo.svg';
+/* eslint-disable react/jsx-no-useless-fragment */
+// lib
+import { useRoutes } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+// routes
+import routes from './routes';
+// css
 import './App.css';
+import { colors } from './utils/Constants';
 
-import './App.scss';
+ConfigProvider.config({
+  theme: {
+    primaryColor: `${colors.primary[500]}`,
+  },
+});
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const element = useRoutes(routes);
+  return <ConfigProvider>{element}</ConfigProvider>;
 }
 
 export default App;
