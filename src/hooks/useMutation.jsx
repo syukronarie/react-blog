@@ -23,12 +23,22 @@ const useMutation = (fn) => {
           setIsError(true);
           setError(err);
         });
-
-      setIsLoading(false);
       setIsIdle(false);
+      setIsLoading(false);
       mutate(null);
     }
   }, [fn, payload]);
+
+  useEffect(() => {
+    if (data)
+      setTimeout(() => {
+        setData(null);
+        setIsIdle(false);
+        setIsSuccess(false);
+        setIsError(false);
+        setError(null);
+      });
+  }, [data]);
 
   return { mutate, isIdle, isLoading, isError, isSuccess, error, data };
 };

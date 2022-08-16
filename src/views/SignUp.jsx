@@ -8,24 +8,23 @@ import APIUser from '../api/user.api';
 import Alert from '../components/Alert';
 
 const SignUp = () => {
-  const signUp = useMutation((data) => APIUser.signup(data));
   const navigate = useNavigate();
+  const signUp = useMutation((data) => APIUser.signup(data));
+  const { isLoading, isError, isSuccess, error } = signUp;
 
   const onFinish = async (values) => {
     signUp.mutate(values);
   };
 
   useEffect(() => {
-    if (signUp.isError) {
-      const { statusText, message } = signUp.error;
+    if (isError) {
+      const { statusText, message } = error;
       Alert.error(statusText, message);
     }
-    if (signUp.isSuccess) {
-      Alert.signUpSuccess(navigate('/signin'));
+    if (isSuccess) {
+      Alert.signUpSuccess(navigate);
     }
-  }, [signUp, navigate]);
-
-  console.log('render');
+  }, [isError, isSuccess, error, navigate]);
 
   return (
     <ContainerSyled>
@@ -63,7 +62,7 @@ const SignUp = () => {
           <Input.Password />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button loading={signUp.isLoading} type="primary" htmlType="submit">
+          <Button loading={isLoading} type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>

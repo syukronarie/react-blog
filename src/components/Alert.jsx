@@ -15,7 +15,7 @@ const signUpSuccess = (navigate) => {
     .then(() => message.info('Here we go...', 1))
     .then(() => message.success('You are successfully signed up', 2))
     .then(() => message.info('Redirecting to sign in', 1))
-    .then(() => navigate());
+    .then(() => navigate('/signin'));
 };
 
 const error = (statusText, textMessage) => {

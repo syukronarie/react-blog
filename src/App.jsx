@@ -23,7 +23,6 @@ const ErrorFallback = ({ resetErrorBoundary }) => {
   useEffect(() => {
     resetErrorBoundary();
   }, [resetErrorBoundary]);
-
   return null;
 };
 
