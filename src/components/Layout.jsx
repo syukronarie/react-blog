@@ -1,24 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { HeaderStyled, LayoutSyled, MainStyled, NavbarStyled } from './styled';
+import { HeaderStyled, LayoutSyled, MainStyled } from './styled';
+import Navbar from './Navbar';
 
 const Layout = () => {
   return (
     <LayoutSyled>
       <HeaderStyled>
-        <NavbarStyled>
-          <h3>Blog App</h3>
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/">Category</a>
-            </li>
-            <li>
-              <a href="/">Tag</a>
-            </li>
-          </ul>
-        </NavbarStyled>
+        <Navbar />
       </HeaderStyled>
       <MainStyled>
         <Outlet />
