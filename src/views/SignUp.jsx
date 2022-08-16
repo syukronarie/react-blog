@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ContainerSyled } from '../components/styled';
 import useMutation from '../hooks/useMutation';
 import APIUser from '../api/user.api';
-import ApiError from '../utils/ApiError';
 import Alert from '../components/Alert';
 
 const SignUp = () => {
@@ -18,24 +17,20 @@ const SignUp = () => {
 
   useEffect(() => {
     if (signUp.isError) {
-      const { statusCode, statusText, message } = signUp.error;
-      throw new ApiError(statusCode, statusText, message);
+      const { statusText, message } = signUp.error;
+      Alert.error(statusText, message);
     }
     if (signUp.isSuccess) {
       Alert.signUpSuccess(navigate('/signin'));
     }
   }, [signUp, navigate]);
 
+  console.log('render');
+
   return (
     <ContainerSyled>
       <h1>Sign Up</h1>
-      <Form
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        onFinish={onFinish}
-        // onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
+      <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={onFinish} autoComplete="off">
         <Form.Item
           label="Username"
           name="userName"
