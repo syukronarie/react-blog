@@ -1,11 +1,30 @@
+/* eslint-disable react/button-has-type */
+import { useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ContainerSyled } from '../components/styled';
+import useMutation from '../hooks/useMutation';
+import APIUser from '../api/user.api';
+import ApiError from '../utils/ApiError';
+import Alert from '../components/Alert';
 
 const SignUp = () => {
-  const onFinish = (values) => {
-    console.log(values);
+  const signUp = useMutation((data) => APIUser.signup(data));
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    signUp.mutate(values);
   };
+
+  useEffect(() => {
+    if (signUp.isError) {
+      const { statusCode, statusText, message } = signUp.error;
+      throw new ApiError(statusCode, statusText, message);
+    }
+    if (signUp.isSuccess) {
+      Alert.signUpSuccess(navigate('/signin'));
+    }
+  }, [signUp, navigate]);
 
   return (
     <ContainerSyled>
@@ -49,11 +68,7 @@ const SignUp = () => {
           <Input.Password />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button
-            // loading={signIn.isLoading}
-            type="primary"
-            htmlType="submit"
-          >
+          <Button loading={signUp.isLoading} type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>
