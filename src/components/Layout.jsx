@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { HeaderStyled, LayoutSyled, MainStyled } from './styled';
+import { ContainerSyled, HeaderStyled, LayoutSyled, MainStyled } from './styled';
 import Navbar from './Navbar';
 
 const Layout = () => {
@@ -9,7 +9,9 @@ const Layout = () => {
         <Navbar />
       </HeaderStyled>
       <MainStyled>
-        <Outlet />
+        <ContainerSyled>
+          <Outlet />
+        </ContainerSyled>
       </MainStyled>
     </LayoutSyled>
   );

@@ -1,20 +1,29 @@
+import { Button } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import Auth from '../utils/Auth';
 import { NavbarStyled } from './styled';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <NavbarStyled>
       <h3>Blog App</h3>
       <ul>
         <li>
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="/">Category</a>
+          <Link to="/createpost">Create Post</Link>
         </li>
         <li>
-          <a href="/">Tag</a>
+          <Link to="/">Tag</Link>
         </li>
       </ul>
+      {Auth.isAuthorization() && (
+        <Button type="text" onClick={() => Auth.signOut(navigate)}>
+          Log out
+        </Button>
+      )}
     </NavbarStyled>
   );
 };

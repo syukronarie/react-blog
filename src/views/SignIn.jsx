@@ -1,40 +1,38 @@
-// import userAPI from './api/user.apis';
-// import { Alert } from './components';
+import { useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
-import { ContainerSyled } from '../components/styled';
-// import { useEffect } from 'react';
-// import { useMutation } from '@tanstack/react-query';
-// import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Alert from '../components/Alert';
+import useMutation from '../hooks/useMutation';
+import APIAuth from '../api/auth.api';
 
 const SignIn = () => {
-  // const signIn = useMutation((data) => userAPI.signIn(data));
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const signIn = useMutation((data) => APIAuth.signin(data));
+  const { isLoading, isError, isSuccess, error } = signIn;
 
-  // const onFinish = (values) => {
-  //   signIn.mutate(values);
-  // };
+  const onFinish = async (values) => {
+    signIn.mutate(values);
+  };
 
-  // const onFinishFailed = (errorInfo) => {
-  //   console.log('Failed:', errorInfo);
-  // };
-
-  // useEffect(() => {
-  //   if (signIn.isError) throw new Error(signIn.error);
-  //   if (signIn.isSuccess) {
-  //     Alert.signInSuccess(navigate);
-  //   }
-  // }, [signIn, navigate]);
+  useEffect(() => {
+    if (isError) {
+      const { statusText, message } = error;
+      Alert.error(statusText, message);
+    }
+    if (isSuccess) {
+      Alert.signInSuccess(navigate);
+    }
+  }, [isError, isSuccess, error, navigate]);
 
   return (
-    <ContainerSyled>
+    <>
       <h1>Sign In</h1>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
-        // onFinish={onFinish}
+        onFinish={onFinish}
         // onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
@@ -55,11 +53,7 @@ const SignIn = () => {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button
-            // loading={signIn.isLoading}
-            type="primary"
-            htmlType="submit"
-          >
+          <Button loading={isLoading} type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>
@@ -68,7 +62,7 @@ const SignIn = () => {
       <p>
         Don&apos;t have account? <Link to="/signup">Signup</Link>
       </p>
-    </ContainerSyled>
+    </>
   );
 };
 

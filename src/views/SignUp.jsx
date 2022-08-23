@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
-import { ContainerSyled } from '../components/styled';
 import useMutation from '../hooks/useMutation';
 import APIUser from '../api/user.api';
 import Alert from '../components/Alert';
@@ -27,7 +26,7 @@ const SignUp = () => {
   }, [isError, isSuccess, error, navigate]);
 
   return (
-    <ContainerSyled>
+    <>
       <h1>Sign Up</h1>
       <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={onFinish} autoComplete="off">
         <Form.Item
@@ -71,7 +70,7 @@ const SignUp = () => {
       <p>
         Already have account? <Link to="/signin">Signin</Link>
       </p>
-    </ContainerSyled>
+    </>
   );
 };
 
