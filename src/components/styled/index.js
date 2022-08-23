@@ -57,9 +57,21 @@ const NavbarStyled = styled.nav`
 const MainStyled = styled.main`
   display: flex;
   justify-content: center;
-  margin: 120px auto;
   width: 100%;
   height: 100%;
 `;
 
-export { LayoutSyled, HeaderStyled, NavbarStyled, MainStyled };
+const ContainerSyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  padding: 86px 0;
+
+  h1 {
+    margin-bottom: 30px;
+  }
+`;
+
+export { LayoutSyled, HeaderStyled, NavbarStyled, MainStyled, ContainerSyled };
