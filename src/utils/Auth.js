@@ -26,7 +26,7 @@ const Auth = {
     const refreshExpires = new Date(refresh.expires);
     Cookies.set('token', access.token, { expires: accessExpires });
     Cookies.set('rt', refresh.token, { expires: refreshExpires });
-    Cookies.set('sub', sub);
+    Cookies.set('sub', sub, { expires: accessExpires });
     return data;
   },
 };
