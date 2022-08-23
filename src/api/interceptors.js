@@ -6,6 +6,12 @@ import axios, { AxiosError } from 'axios';
 import Auth from '../utils/Auth';
 import { CONST } from '../utils/Constants';
 
+const exceptionApiUrlforRT = (config) => {
+  if (config) return null;
+  const arr = [config.url.includes('/auth/login'), config.url.includes('/users')];
+  return arr.includes(true);
+};
+
 export const isHandlerEnabled = (config) => {
   return config.hasOwnProperty('handlerEnabled') && !config.handlerEnabled ? false : true;
 };
@@ -15,7 +21,8 @@ export const requestHandler = async (config) => {
     const auth = Auth.getAccessToken();
     if (auth) {
       config.headers.token = auth;
-    } else if (config.url !== '/auth/login') {
+    } else if (config.method === 'post' && exceptionApiUrlforRT(config)) {
+      console.log({ config });
       try {
         const rt = Auth.getRefreshToken();
         const resRT = await axios.get(`${CONST.BASE_URL_API}/auth/refresh-token`, { headers: { refreshtoken: rt } });
