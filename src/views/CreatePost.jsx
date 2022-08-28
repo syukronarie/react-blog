@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import useMutation from '../hooks/useMutation';
 import APIPosts from '../api/posts.api';
 import Alert from '../components/Alert';
-import Auth from '../utils/Auth';
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -12,8 +11,7 @@ const CreatePost = () => {
   const { data, error, isLoading, isError, isSuccess } = posts;
 
   const onFinish = (values) => {
-    const authorId = Auth.getUserId();
-    posts.mutate({ ...values, authorId });
+    posts.mutate({ ...values });
   };
 
   useEffect(() => {

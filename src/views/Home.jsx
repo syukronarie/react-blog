@@ -24,7 +24,7 @@ const Home = () => {
             <div key={val.id}>
               <h3>{val.title}</h3>
               <p>{val.content}</p>
-              <p>{val.createdAt}</p>
+              <p>{Date(val.createdAt)}</p>
             </div>
           ))}
         </div>

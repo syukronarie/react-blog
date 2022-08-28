@@ -1,6 +1,5 @@
 import axiosInstance from './axiosInstance';
 import ApiError from '../utils/ApiError';
-import { CONST } from '../utils/Constants';
 
 const APIPosts = {
   async getPosts() {
@@ -14,12 +13,44 @@ const APIPosts = {
     }
   },
 
-  async createPost(data) {
-    if (!data) throw new Error(CONST.MISSING_REQUIRED_FIELD);
-    if ((!data.authorId && !data.title) || !data.content) throw new Error(CONST.MISSING_REQUIRED_FIELD);
-    const { authorId, title, content } = data;
+  async createPost(createBody) {
     try {
-      const response = await axiosInstance.post('/posts', { authorId, title, content });
+      const { title, content, categories, isPublished } = createBody;
+      const response = await axiosInstance.post('/posts', { title, content, categories, isPublished });
+      return response.data;
+    } catch (err) {
+      const { status, statusText } = err.response;
+      const { message, stack } = err.response.data;
+      throw new ApiError(status, statusText, message, true, stack);
+    }
+  },
+
+  async getPostById(id) {
+    try {
+      const response = await axiosInstance.post(`/posts/${id}`);
+      return response.data;
+    } catch (err) {
+      const { status, statusText } = err.response;
+      const { message, stack } = err.response.data;
+      throw new ApiError(status, statusText, message, true, stack);
+    }
+  },
+
+  async updatePost(data) {
+    const { id, title, content, categories, isPublished } = data;
+    try {
+      const response = await axiosInstance.patch(`/posts/${id}`, { title, content, categories, isPublished });
+      return response.data;
+    } catch (err) {
+      const { status, statusText } = err.response;
+      const { message, stack } = err.response.data;
+      throw new ApiError(status, statusText, message, true, stack);
+    }
+  },
+
+  async deletePost(id) {
+    try {
+      const response = await axiosInstance.delete(`/posts/${id}`);
       return response.data;
     } catch (err) {
       const { status, statusText } = err.response;

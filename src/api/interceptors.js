@@ -22,7 +22,6 @@ export const requestHandler = async (config) => {
     if (auth) {
       config.headers.token = auth;
     } else if (config.method === 'post' && exceptionApiUrlforRT(config)) {
-      console.log({ config });
       try {
         const rt = Auth.getRefreshToken();
         const resRT = await axios.get(`${CONST.BASE_URL_API}/auth/refresh-token`, { headers: { refreshtoken: rt } });
