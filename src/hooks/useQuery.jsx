@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const useQuery = (fn) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isIdle, setIsIdle] = useState(true);

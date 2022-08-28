@@ -22,6 +22,7 @@ html {
 
 body {
   margin: 0;
+  font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif !important;
 }
 
 /**
@@ -74,7 +75,20 @@ pre {
  */
 
 a {
+  text-decoration: none;
+}
+
+a {
   background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a:-webkit-any-link {
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /**

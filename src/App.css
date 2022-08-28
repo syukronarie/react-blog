@@ -1,1 +1,68 @@
 @import 'antd/dist/antd.variable.min.css';
+
+.post {
+  margin-bottom: 2.03125rem;
+}
+
+.post__meta-name {
+  font-size: 0.875rem;
+  color: #222;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.post__meta-time {
+  font-size: 0.875rem;
+  color: #222;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.post__meta-category-link {
+  font-size: 0.875rem;
+  color: #f7a046;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.post__meta-divider {
+  margin: 0 0.3125rem;
+}
+
+.post__title {
+  font-size: 1.6875rem;
+  line-height: 2.4375rem;
+  margin-top: 0;
+}
+
+.post__title-link {
+  color: #222;
+}
+
+.post__title-link:hover {
+  text-decoration: underline;
+}
+
+.post__vote-divider {
+  margin: 0 0.3125rem;
+}
+
+.post__vote-icon {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+
+.post__vote-icon:hover {
+  opacity: 0.75;
+}
+
+.post__description {
+  font-size: 1rem;
+  line-height: 1.625rem;
+  margin-bottom: 1.21875rem;
+}
+
+.post__readmore {
+  font-size: 1rem;
+}

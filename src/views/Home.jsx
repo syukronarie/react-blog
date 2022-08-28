@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import APIPosts from '../api/posts.api';
+import APIPosts from '../api/post.api';
 import Alert from '../components/Alert';
 import useQuery from '../hooks/useQuery';
+import Post from './Post/Post';
 
 const Home = () => {
   const posts = useQuery(() => APIPosts.getPosts());
@@ -18,19 +19,7 @@ const Home = () => {
     <>
       <h1>Blog News</h1>
       {isLoading && <p>Loading...</p>}
-      {isSuccess ? (
-        <div>
-          {data.data.map((val) => (
-            <div key={val.id}>
-              <h3>{val.title}</h3>
-              <p>{val.content}</p>
-              <p>{val.createdAt}</p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>Loading</p>
-      )}
+      {isSuccess ? <Post data={data.data || []} /> : <p>Loading</p>}
     </>
   );
 };

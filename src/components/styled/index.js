@@ -67,11 +67,15 @@ const ContainerSyled = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  padding: 86px 0;
+  padding: 40px 0;
 
   h1 {
     margin-bottom: 30px;
   }
 `;
 
-export { LayoutSyled, HeaderStyled, NavbarStyled, MainStyled, ContainerSyled };
+const ContentInner = styled.div`
+  padding: 1.875rem 1.25rem;
+`;
+
+export { LayoutSyled, HeaderStyled, NavbarStyled, MainStyled, ContainerSyled, ContentInner };
