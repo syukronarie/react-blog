@@ -4,22 +4,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import heartSolidIcon from '../../assets/svg/heart-solid-icon.svg';
 import heartRegularIcon from '../../assets/svg/heart-regular-icon.svg';
-
-const convertUTCtoID = (utc) => {
-  const date = new Date(utc);
-  const options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  };
-  return date.toLocaleTimeString('en-id', options);
-};
+import { convertUTCtoID } from '../../utils/helpers';
 
 const PostItem = (props) => {
   const { item, handleCreateVote, handleUpdateVote } = props;
   const [hasVoted, setHasVoted] = useState(item.hasVoted);
+  const [voteCount, setVoteCount] = useState(item.voteCount);
   return (
     <div className="post">
       <div className="post__meta">
@@ -48,6 +38,7 @@ const PostItem = (props) => {
             onClick={() => {
               handleUpdateVote(item.id);
               setHasVoted(false);
+              setVoteCount(voteCount - 1);
             }}
           />
         ) : (
@@ -58,9 +49,13 @@ const PostItem = (props) => {
             onClick={() => {
               handleCreateVote(item.id);
               setHasVoted(true);
+              setVoteCount(voteCount + 1);
             }}
           />
         )}
+        <span>
+          &nbsp; {voteCount} {voteCount > 1 ? 'votes' : 'vote'}
+        </span>
         <span className="post__vote-divider" />
       </div>
     </div>

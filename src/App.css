@@ -1,5 +1,15 @@
 @import 'antd/dist/antd.variable.min.css';
 
+.home {
+  display: flex;
+  align-items: flex-start;
+  padding: 80px;
+}
+
+.posts {
+  padding: 1.875rem 1.25rem;
+}
+
 .post {
   margin-bottom: 2.03125rem;
 }
@@ -65,4 +75,23 @@
 
 .post__readmore {
   font-size: 1rem;
+}
+
+.user {
+  width: 720px;
+  padding: 1.875rem 1.25rem;
+}
+
+.user__title {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  margin-top: 20px;
+}
+
+.user__photo {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 100%;
+  border: #9999 solid;
 }

@@ -13,10 +13,10 @@ const Navbar = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/createpost">Create Post</Link>
+          <Link to="/create-post">Create Post</Link>
         </li>
         <li>
-          <Link to="/">Tag</Link>
+          <Link to="/create-category">Create Category</Link>
         </li>
       </ul>
       {Auth.isAuthorization() && (
