@@ -19,9 +19,13 @@ const Navbar = () => {
           <Link to="/create-category">Create Category</Link>
         </li>
       </ul>
-      {Auth.isAuthorization() && (
+      {Auth.isAuthorization() ? (
         <Button type="text" onClick={() => Auth.signOut(navigate)}>
-          Log out
+          Sign out
+        </Button>
+      ) : (
+        <Button type="text" onClick={() => Auth.signOut(navigate)}>
+          Sign in
         </Button>
       )}
     </NavbarStyled>
