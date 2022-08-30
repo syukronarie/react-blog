@@ -29,16 +29,16 @@ const useMutation = (fn) => {
     }
   }, [fn, payload]);
 
-  useEffect(() => {
-    if (data)
-      setTimeout(() => {
-        setData(null);
-        setIsIdle(false);
-        setIsSuccess(false);
-        setIsError(false);
-        setError(null);
-      });
-  }, [data]);
+  // useEffect(() => {
+  //   if (data)
+  //     setTimeout(() => {
+  //       setData(null);
+  //       setIsIdle(false);
+  //       setIsSuccess(false);
+  //       setIsError(false);
+  //       setError(null);
+  //     });
+  // }, [data]);
 
   return { mutate, isIdle, isLoading, isError, isSuccess, error, data };
 };

@@ -26,6 +26,14 @@ const createPostSuccess = (navigate) => {
     .then(() => navigate('/'));
 };
 
+const createCategorySuccess = (navigate) => {
+  message
+    .loading(`One second...`, 1)
+    .then(() => message.info('Here we go...', 1))
+    .then(() => message.success('created category successfully', 2))
+    .then(() => navigate('/'));
+};
+
 const error = (statusText, textMessage) => {
   message
     .loading(`One second...`, 1)
@@ -34,6 +42,6 @@ const error = (statusText, textMessage) => {
     .then(() => message.error(`${statusText}: ${textMessage}`, 2.5));
 };
 
-const Alert = { signInSuccess, signUpSuccess, createPostSuccess, error };
+const Alert = { signInSuccess, signUpSuccess, createPostSuccess, createCategorySuccess, error };
 
 export default Alert;

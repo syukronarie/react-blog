@@ -40,7 +40,7 @@ const NavbarStyled = styled.nav`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 200px;
+    width: 400px;
   }
 
   li {
