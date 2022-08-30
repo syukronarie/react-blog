@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-useless-fragment */
+import { Link } from 'react-router-dom';
 import { convertUTCtoID } from '../../utils/helpers';
 import userIcon from '../../assets/svg/user-solid-icon.svg';
 
@@ -27,7 +28,9 @@ const User = (props) => {
             </div>
           </div>
         ) : (
-          <p>Please sign in</p>
+          <p>
+            Please <Link to="/signin">sign in</Link>{' '}
+          </p>
         )}
       </>
     );
