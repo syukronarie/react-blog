@@ -1,7 +1,7 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from '../network/axiosInstance';
 import ApiError from '../utils/ApiError';
 
-const APIVotes = {
+const APIPosts = {
   async getPosts() {
     try {
       const response = await axiosInstance.get('/posts');
@@ -13,9 +13,10 @@ const APIVotes = {
     }
   },
 
-  async createVote(postId) {
+  async createPost(createBody) {
     try {
-      const response = await axiosInstance.post('/votes', { postId });
+      const { title, content, categories, isPublished } = createBody;
+      const response = await axiosInstance.post('/posts', { title, content, categories, isPublished });
       return response.data;
     } catch (err) {
       const { status, statusText } = err.response;
@@ -35,9 +36,10 @@ const APIVotes = {
     }
   },
 
-  async updateVote(postId) {
+  async updatePost(data) {
+    const { id, title, content, categories, isPublished } = data;
     try {
-      const response = await axiosInstance.patch('/votes', { postId });
+      const response = await axiosInstance.patch(`/posts/${id}`, { title, content, categories, isPublished });
       return response.data;
     } catch (err) {
       const { status, statusText } = err.response;
@@ -58,4 +60,4 @@ const APIVotes = {
   },
 };
 
-export default APIVotes;
+export default APIPosts;

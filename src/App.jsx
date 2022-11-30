@@ -3,7 +3,7 @@
 // lib
 import { ConfigProvider } from 'antd';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRoutes } from 'react-router-dom';
 
 // routes
@@ -33,14 +33,51 @@ const myErrorHandler = (error) => {
   }
 };
 
+const CountState = ({ state }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    return () => {
+      setCount(0);
+      console.log('Unmounting');
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log({ count });
+    if (state) setCount(state);
+  }, [state, count]);
+
+  return <p>{count}</p>;
+};
+
 function App() {
-  const element = useRoutes(routes);
+  // const element = useRoutes(routes);
+
+  const [state, setState] = useState(0);
+  const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    console.log('mounting');
+  }, []);
+
+  useEffect(() => {
+    console.log('updating');
+    console.log({ state });
+  }, [state]);
+
   return (
-    <ConfigProvider>
-      <ErrorBoundary FallbackComponent={ErrorFallback} onError={myErrorHandler}>
-        {element}
-      </ErrorBoundary>
-    </ConfigProvider>
+    <>
+      <p>test</p>
+      <button onClick={() => setState(state + 1)}>Increment</button>
+      <button onClick={() => setHide(!hide)}>Hide Result Count</button>
+      {!hide && <CountState state={state} />}
+    </>
+    // <ConfigProvider>
+    //   <ErrorBoundary FallbackComponent={ErrorFallback} onError={myErrorHandler}>
+    //     {element}
+    //   </ErrorBoundary>
+    // </ConfigProvider>
   );
 }
 
