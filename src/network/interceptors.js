@@ -24,10 +24,12 @@ export const requestHandler = async (config) => {
     } else if (exceptionApiUrlforRT(config)) {
       try {
         const rt = Auth.getRefreshToken();
-        const resRT = await axios.get(`${CONST.BASE_URL_API}/auth/refresh-token`, { headers: { refreshtoken: rt } });
-        const payload = resRT.data.data;
-        Auth.storeUserInfoToCookie(payload);
-        config.headers.token = payload.access.token;
+        if (rt) {
+          const resRT = await axios.get(`${CONST.BASE_URL_API}/auth/refresh-token`, { headers: { refreshtoken: rt } });
+          const payload = resRT.data.data;
+          Auth.storeUserInfoToCookie(payload);
+          config.headers.token = payload.access.token;
+        }
       } catch (error) {
         const { message, code, request, response } = error;
         throw new AxiosError(message, code, config, request, response);
