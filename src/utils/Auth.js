@@ -17,6 +17,7 @@ const Auth = {
   signOut(navigate) {
     Cookies.remove('token');
     Cookies.remove('rt');
+    Cookies.remove('sub');
     navigate('/signin');
   },
   storeUserInfoToCookie(data) {
