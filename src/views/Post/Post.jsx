@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Modal } from 'antd';
 import PostItem from './PostItem';
-import APIVotes from '../../api/vote.api';
+import APIVotes from '../../apis/vote.api';
 import useMutation from '../../hooks/useMutation';
 import Auth from '../../utils/Auth';
 

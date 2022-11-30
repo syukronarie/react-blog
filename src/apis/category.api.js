@@ -1,4 +1,4 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from '../network/axiosInstance';
 import ApiError from '../utils/ApiError';
 
 const APICategories = {

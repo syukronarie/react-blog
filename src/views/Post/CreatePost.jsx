@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useMutation from '../../hooks/useMutation';
 import useQuery from '../../hooks/useQuery';
-import APIPosts from '../../api/post.api';
-import APICategories from '../../api/category.api';
+import APIPosts from '../../apis/post.api';
+import APICategories from '../../apis/category.api';
 import Alert from '../../components/Alert';
 
 const CreatePost = () => {

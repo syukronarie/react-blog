@@ -1,6 +1,3 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/jsx-no-useless-fragment */
-// lib
 import { ConfigProvider } from 'antd';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useEffect } from 'react';
@@ -35,6 +32,7 @@ const myErrorHandler = (error) => {
 
 function App() {
   const element = useRoutes(routes);
+
   return (
     <ConfigProvider>
       <ErrorBoundary FallbackComponent={ErrorFallback} onError={myErrorHandler}>

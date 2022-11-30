@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import APIPosts from '../api/post.api';
-import APIUser from '../api/user.api';
+import APIPosts from '../apis/post.api';
+import APIUser from '../apis/user.api';
 import Alert from '../components/Alert';
 import useMutation from '../hooks/useMutation';
 import useQuery from '../hooks/useQuery';

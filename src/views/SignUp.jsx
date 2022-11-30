@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import useMutation from '../hooks/useMutation';
-import APIUser from '../api/user.api';
+import APIUser from '../apis/user.api';
 import Alert from '../components/Alert';
 
 const SignUp = () => {

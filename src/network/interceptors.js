@@ -7,9 +7,9 @@ import Auth from '../utils/Auth';
 import { CONST } from '../utils/Constants';
 
 const exceptionApiUrlforRT = (config) => {
-  if (config) return null;
+  if (!config) return null;
   const arr = [config.url.includes('/auth/login'), config.url.includes('/users')];
-  return arr.includes(true);
+  return !arr.includes(true);
 };
 
 export const isHandlerEnabled = (config) => {
@@ -21,7 +21,7 @@ export const requestHandler = async (config) => {
     const auth = Auth.getAccessToken();
     if (auth) {
       config.headers.token = auth;
-    } else if (config.method === 'post' && exceptionApiUrlforRT(config)) {
+    } else if (exceptionApiUrlforRT(config)) {
       try {
         const rt = Auth.getRefreshToken();
         const resRT = await axios.get(`${CONST.BASE_URL_API}/auth/refresh-token`, { headers: { refreshtoken: rt } });

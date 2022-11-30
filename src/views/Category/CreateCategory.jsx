@@ -2,7 +2,7 @@ import { Button, Form, Input } from 'antd';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useMutation from '../../hooks/useMutation';
-import APICategories from '../../api/category.api';
+import APICategories from '../../apis/category.api';
 import Alert from '../../components/Alert';
 
 const CreatePost = () => {

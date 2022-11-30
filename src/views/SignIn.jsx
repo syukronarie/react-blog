@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import Alert from '../components/Alert';
 import useMutation from '../hooks/useMutation';
-import APIAuth from '../api/auth.api';
+import APIAuth from '../apis/auth.api';
 
 const SignIn = () => {
   const navigate = useNavigate();
